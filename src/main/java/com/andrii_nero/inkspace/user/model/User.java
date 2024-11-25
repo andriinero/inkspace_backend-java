@@ -2,6 +2,7 @@ package com.andrii_nero.inkspace.user.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.UuidGenerator;
@@ -13,6 +14,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 public class User {
 
     @Id
@@ -25,10 +27,11 @@ public class User {
 
     private String email;
 
+    @Column(columnDefinition = "varchar(255) default 'USER'")
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
-    @Column(name = "sign_up_date", columnDefinition = "varchar(255) default 'USER'")
+    @Column(name = "sign_up_date")
     @Temporal(TemporalType.TIMESTAMP)
     private Date signUpDate;
 
